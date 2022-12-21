@@ -2,7 +2,6 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
         email = self.normalize_email(email)
@@ -22,7 +21,6 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("El superusuario necesita que is_superuser sea verdadero")
         return self.create_user(email=email, password=password, **extra_fields)
-
 
 class User(AbstractUser):
     email = models.CharField(max_length=80, unique=True, default="no@email.com")
